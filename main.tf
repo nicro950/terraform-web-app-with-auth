@@ -26,7 +26,7 @@ resource "azurerm_app_service_plan" "main" {
 }
 
 resource "azurerm_app_service" "main" {
-  name                = "nw-web-app-test-web"
+  name                = "${local.name}"
   location            = "${azurerm_resource_group.main.location}"
   resource_group_name = "${azurerm_resource_group.main.name}"
   app_service_plan_id = "${azurerm_app_service_plan.main.id}"
@@ -80,4 +80,3 @@ locals {
   full_hostname = "https://${local.hostname}/"
   auth_hostname = "${local.full_hostname}.auth/login/aad/callback"
 }
-
