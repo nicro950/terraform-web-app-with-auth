@@ -33,6 +33,10 @@ resource "azurerm_app_service" "main" {
 
   auth_settings {
     enabled = true
+    additional_login_params = {
+      response_type = "code id_token",
+      resource      = "${azuread_application.main.application_id}"
+    }
     active_directory {
       client_id     = "${azuread_application.main.application_id}"
       client_secret = "${random_string.password.result}"
